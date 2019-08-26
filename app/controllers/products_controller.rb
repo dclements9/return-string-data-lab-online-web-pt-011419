@@ -1,9 +1,16 @@
 class ProductsController < ApplicationController
 
-    def create
-        @product = Product.new(product_params)
-        @product.save
+    def body
+        @product = Product.find(params[:id])
 
+        render plain: @product.description
+    end
+
+    def create        
+        @product = Product.new(product_params)
+       # binding.pry
+        @product.save
+        #binding.pry
         redirect_to products_path
     end
 
